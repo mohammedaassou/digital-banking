@@ -1,19 +1,24 @@
 package ma.mundia.springbankingbackend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.mundia.springbankingbackend.enums.OperationType;
 
+import java.util.Date;
+
+import jakarta.persistence.*;
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
 public class AccountOperation {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String operationDate;
+    private Date operationDate;
     private double amount;
+    @Enumerated(EnumType.STRING)
     private OperationType type;
     @ManyToOne
     private BankAccount bankAccount;
+    private String description;
 }
+
